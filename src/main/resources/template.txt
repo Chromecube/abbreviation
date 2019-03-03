@@ -1,0 +1,6 @@
+//Clear all text in order to delete the combination
+:init
+combination.setName("New Combination");
+
+:run
+return "Hello, World!";
