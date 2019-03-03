@@ -1,11 +1,10 @@
 [license]: https://img.shields.io/badge/License-MIT-brightgreen.svg
 [ ![license][] ](./LICENSE)
 ![Build Status](https://travis-ci.org/Chromecube/abbreviation.svg?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b2fdcfd8291242f4b479794eff6c6b01)](https://app.codacy.com/app/chromecube/abbreviation?utm_source=github.com&utm_medium=referral&utm_content=Chromecube/abbreviation&utm_campaign=Badge_Grade_Settings)
 
 ![logo](./res/logo128x128.png "Logo")
-#Abbreviation
-
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b2fdcfd8291242f4b479794eff6c6b01)](https://app.codacy.com/app/chromecube/abbreviation?utm_source=github.com&utm_medium=referral&utm_content=Chromecube/abbreviation&utm_campaign=Badge_Grade_Settings)
+# Abbreviation
 
 Abbreviation helps you at calling Java shortcut snippets using
 a gamepad for input. You write your Java code in an editor and
