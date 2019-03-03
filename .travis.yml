@@ -2,7 +2,7 @@ language: java
 
 jdk:
   - openjdk11
- sudo: required
+sudo: required
   
  before_script:
   - chmod +x gradlew
