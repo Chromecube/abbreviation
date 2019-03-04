@@ -101,36 +101,34 @@ public class Combination {
     private void setup() {
         if (!requiresSetup) return;
         requiresSetup = false;
-
-        //Create File if it does not exist
-        if (!file.exists() || !file.isFile()) {
-            valid = false;
-            indices = new GamepadInput[0];
-            return;
-        }
-
-        //Read indices from file name
-        String name = file.getName().substring(0, file.getName().lastIndexOf("."));
-        String[] strings = name.split("-");
-        int[] numbers = new int[strings.length];
-        for (int i = 0; i < strings.length; i++) {
-            try {
-                numbers[i] = Integer.valueOf(strings[i]);
-            } catch (NumberFormatException e) {
-                logger.error("Could not format number: " + e);
+        try {
+            if (!isFileValid() || !readIndices()) {
                 valid = false;
                 indices = new GamepadInput[0];
                 return;
             }
+
+            readScript();
+        } catch (Exception e) {
+            logger.error("An error occurred while reading from combination file: ", e);
         }
 
-        indices = GamepadInput.toGamepadInputs(numbers);
+        executeInitScript();
 
+        valid = true;
+    }
+
+    /**
+     * Read in the file content and parse it.
+     *
+     * @throws IOException If an error occurs while reading in the file.
+     */
+    private void readScript() throws IOException {
         //Read scripts
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)))) {
             StringBuilder tmp = new StringBuilder();
             String line;
-            boolean inRunScriptPart = true; //False -> In init script. True -> In run script-
+            boolean inRunScriptPart = true; //False -> In init script. True -> In run script
 
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
@@ -156,13 +154,38 @@ public class Combination {
                     initScript += tmp;
                 }
             }
-        } catch (Exception e) {
-            logger.error("An error occurred while reading from combination file: ", e);
         }
+    }
 
-        executeInitScript();
+    /**
+     * @return Whether the indices were successfully read from the file name.
+     */
+    private boolean readIndices() {
+        String name = file.getName().substring(0, file.getName().lastIndexOf("."));
+        String[] strings = name.split("-"); //Split up into the indices
+        int[] numbers = new int[strings.length];
+        for (int i = 0; i < strings.length; i++) { //Convert the strings to integers
+            try {
+                numbers[i] = Integer.valueOf(strings[i]);
+            } catch (NumberFormatException e) {
+                logger.error("Could not format number: " + e);
+                return false;
+            }
+        }
+        //Convert the integers to GamepadInputs
+        indices = GamepadInput.toGamepadInputs(numbers);
+        return true;
+    }
 
-        valid = true;
+    /**
+     * @return Whether the file is valid.
+     */
+    private boolean isFileValid() {
+        if (file != null && file.exists() && file.isFile()) return true;
+
+        valid = false;
+        indices = new GamepadInput[0];
+        return false;
     }
 
     /**

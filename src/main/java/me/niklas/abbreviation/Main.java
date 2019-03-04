@@ -13,12 +13,6 @@ import static me.niklas.abbreviation.enums.EventType.*;
 
 public class Main {
 
-    private final EventManager events = new EventManager();
-    private final CombinationManager combinations;
-    private final InputProcessor processor;
-    private final GamepadInputReceiver input;
-    private final TrayManager tray;
-
     /**
      * @param args The path to the combination directory (optional, by default /combinations)
      */
@@ -30,10 +24,11 @@ public class Main {
 
         logger.debug("Creating objects");
 
-        combinations = new CombinationManager(events);
-        processor = new InputProcessor(events);
-        input = new GamepadInputReceiver(events);
-        tray = new TrayManager(events);
+        EventManager events = new EventManager();
+        CombinationManager combinations = new CombinationManager(events);
+        InputProcessor processor = new InputProcessor(events);
+        GamepadInputReceiver input = new GamepadInputReceiver(events);
+        TrayManager tray = new TrayManager(events);
 
         logger.debug("Registering event subscribers");
 

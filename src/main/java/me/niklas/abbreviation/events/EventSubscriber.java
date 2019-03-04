@@ -21,6 +21,6 @@ public interface EventSubscriber {
      * <p>
      * Implement it to perform a certain task on exit. (e.g. shutting down a thread)
      */
-    default void onExit() {
+    default void onExit() { //Optional to implement
     }
 }

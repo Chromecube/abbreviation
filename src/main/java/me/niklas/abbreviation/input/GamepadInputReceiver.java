@@ -102,7 +102,7 @@ public class GamepadInputReceiver implements Runnable, EventSubscriber {
      *
      * @return Whether a controller is connected.
      */
-    public boolean isControllerConnected() {
+    private boolean isControllerConnected() {
         state = manager.getState(0);
         return state.isConnected;
     }
@@ -120,7 +120,7 @@ public class GamepadInputReceiver implements Runnable, EventSubscriber {
      * {@inheritDoc}
      */
     @Override
-    public void onEvent(EventType type, Object param) {
+    public void onEvent(EventType type, Object param) { //The class does not receive any standard events, only the exit event.
     }
 
     /**

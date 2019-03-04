@@ -17,7 +17,7 @@ public class CombinationTest {
     private Combination combination;
 
     @Before
-    public void setup() {
+    public void setUp() {
         combination = new Combination(new GamepadInput[]{GamepadInput.B, GamepadInput.A},
                 "combination.setName(\"Test\");", "return \"Test\";");
     }
