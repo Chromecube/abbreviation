@@ -38,8 +38,8 @@ initialized.
 4. The <b>run</b> part: Called when the combination is being
 executed.
 5. When you are done editing, simply save and close the editor.
-6. <b>Important:</b> Never forget to <b>reload</b> the
-combinations using !
+6. <b>Important:</b> Never forget to [<b>reload</b> the
+combinations](#reloading)!
 
 ### Running an abbreviation
 
